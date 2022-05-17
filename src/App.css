@@ -75,12 +75,12 @@ h6 {
     font-size: inherit;
     font-weight: inherit;
 }
-/*--------------------*/
+/*-------------------------------------------------*/
 
-.App {
+.app {
     text-align: center;
 }
-.App-header {
+.app__header {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -116,4 +116,41 @@ h6 {
 
 ._red:hover {
     background-color: rgb(177, 54, 54);
+}
+
+/*-------------------------------------------------*/
+.toDoList {
+    font-size: 30px;
+    margin-top: 50px;
+}
+.toDoList__input {
+    margin-bottom: 50px;
+}
+
+.toDoList__text li {
+    color: rgb(39, 155, 155);
+}
+
+/*-------------------------------------------------*/
+
+.quotes__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.quotes__title {
+    padding: 5px;
+    display: flex;
+    font-size: 20px;
+    height: 200px;
+    width: 300px;
+    box-shadow: 0px 0px 10px white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.quotes__title span{
+    color: rgb(39, 155, 155);
 }
