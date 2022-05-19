@@ -25,10 +25,10 @@
     align-items: center;
     justify-content: center;
 }
-.cell img{
-  width: 48px;
-  height: 48px;
-  position: relative;
+.cell img {
+    width: 48px;
+    height: 48px;
+    position: relative;
 }
 
 .black {
@@ -37,4 +37,21 @@
 
 .white {
     background-color: rgb(214, 177, 97);
+}
+
+.selected {
+    background-color: brown;
+}
+.available {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: rgb(96, 158, 96);
+}
+
+.lost {
+    height: calc(50vh - 60px);
+    padding: 30px;
+    margin-left: 50px;
+    background-color: lightgray;
 }
