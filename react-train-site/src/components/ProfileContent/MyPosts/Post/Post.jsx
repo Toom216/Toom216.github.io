@@ -7,7 +7,7 @@ const Post = (props) => {
             <img src="https://oir.mobi/uploads/posts/2021-05/1621430508_15-oir_mobi-p-kaban-v-dikoi-prirode-zhivotnie-krasivo-fo-17.jpg" />
             {props.message}
             <div>
-                {props.likeText} {props.likeCount}
+                Likes {props.likesCount}
             </div>
         </div>
     );
