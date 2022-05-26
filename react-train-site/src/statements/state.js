@@ -1,3 +1,7 @@
+let rerenderEntireTree = () => {
+    console.log("qdbp");
+};
+
 let state = {
     profilePage: {
         posts: [
@@ -12,6 +16,7 @@ let state = {
                 likesCount: "20",
             },
         ],
+        newPostText: "kekw",
     },
 
     dialogsPage: {
@@ -51,6 +56,7 @@ let state = {
                 message: "i really want mountain of money",
             },
         ],
+        newMessageText: "ya me te kudasai",
     },
     sidebar: {
         dialogs: [
@@ -68,6 +74,41 @@ let state = {
             },
         ],
     },
+};
+window.state = state;
+
+export const addPost = () => {
+    let newPost = {
+        id: 5,
+        message: state.profilePage.newPostText,
+        likesCount: 0,
+    };
+    state.profilePage.newPostText = "";
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
+};
+
+export const addMessage = () => {
+    let newMessage = {
+        id: 4,
+        message: state.dialogsPage.newMessageText,
+    };
+    state.dialogsPage.newMessageText = "";
+    state.dialogsPage.messages.push(newMessage);
+    rerenderEntireTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+};
+export const updateNewMessageText = (newMessage) => {
+    state.dialogsPage.newMessageText = newMessage;
+    rerenderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 };
 
 export default state;
