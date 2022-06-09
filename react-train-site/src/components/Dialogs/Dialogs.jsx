@@ -1,5 +1,5 @@
 import React from "react";
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../statements/dialogs-reducer";
+import { Navigate } from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
@@ -15,8 +15,10 @@ const Dialogs = (props) => {
     };
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.updateNewMessageBody(body)
+        props.updateNewMessageBody(body);
     };
+
+    if (!props.isAuth) return <Navigate to={"/login"} />;
 
     return (
         <div className={styles.dialogs}>

@@ -4,7 +4,7 @@ import { sendMessageCreator, updateNewMessageBodyCreator } from "../../statement
 import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => {
-    return { dialogsPage: state.dialogsPage };
+    return { dialogsPage: state.dialogsPage, isAuth: state.auth.isAuth };
 };
 let mapDispatchToProps = (dispatch) => {
     return {
