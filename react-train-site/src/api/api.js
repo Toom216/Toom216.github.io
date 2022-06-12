@@ -19,7 +19,19 @@ export const usersAPI = {
         return instance.delete(`follow/${userId}`);
     },
     getProfile(userId) {
+        console.warn("q2w");
+        return profileAPI.getProfile(userId);
+    },
+};
+export const profileAPI = {
+    getProfile(userId) {
         return instance.get(`profile/${userId}`);
+    },
+    getStatus(userId) {
+        return instance.get(`status/${userId}`);
+    },
+    uspdateStatus(status) {
+        return instance.put(`profile/status`, { status: status });
     },
 };
 

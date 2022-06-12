@@ -20,7 +20,8 @@ const App = (props) => {
                     <Nav />
                     <div className="main-content-wrapper">
                         <Routes>
-                            <Route path="/profile/*:userId?" element={<ProfileContainer />} />
+                            <Route path="/profile/userId?" element={<ProfileContainer />} />
+
                             <Route path="/dialogs/*" element={<DialogsContainer />} />
                             <Route path="/news" element={<News />} />
                             <Route path="/music" element={<Music />} />
@@ -36,3 +37,4 @@ const App = (props) => {
 };
 
 export default App;
+//<Route path="/profile/*" element={<ProfileContainer />} />
