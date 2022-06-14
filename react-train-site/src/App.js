@@ -21,7 +21,6 @@ const App = (props) => {
                     <div className="main-content-wrapper">
                         <Routes>
                             <Route path="/profile/userId?" element={<ProfileContainer />} />
-
                             <Route path="/dialogs/*" element={<DialogsContainer />} />
                             <Route path="/news" element={<News />} />
                             <Route path="/music" element={<Music />} />

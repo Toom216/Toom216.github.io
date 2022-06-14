@@ -3,6 +3,8 @@ import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
 import { Field, reduxForm } from "redux-form";
+import { Textarea } from "../common/FormsControls/FormsControls";
+import { maxLengthCreator, reqired } from "../../utils/validators/validators";
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
