@@ -30,7 +30,7 @@ export const profileAPI = {
     getStatus(userId) {
         return instance.get(`status/${userId}`);
     },
-    uspdateStatus(status) {
+    updateStatus(status) {
         return instance.put(`profile/status`, { status: status });
     },
 };
