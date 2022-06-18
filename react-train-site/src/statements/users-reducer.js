@@ -1,4 +1,5 @@
 import { usersAPI } from "../api/api";
+import { updateObjectInArray } from "../utils/object-helpers";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -22,27 +23,13 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: [
-                    state.users.map((u) => {
-                        if (u.id === action.userId) {
-                            return { ...u, followed: true };
-                        }
-                        return u;
-                    }),
-                ],
+                users: updateObjectInArray(state.users, action.userId, "id", { followed: true }),
             };
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: [
-                    state.users.map((u) => {
-                        if (u.id === action.userId) {
-                            return { ...u, followed: false };
-                        }
-                        return u;
-                    }),
-                ],
+                users: updateObjectInArray(state.users, action.userId, "id", { followed: false }),
             };
 
         case SET_USERS:
@@ -72,37 +59,35 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWIG_PROGRESS, isFetching, userId });
 
 export const getUsers = (page, pageSize) => {
-    return (dispath) => {
+    return async (dispath) => {
         dispath(toggleIsFetching(true));
         dispath(setCurrentPage(page));
 
-        usersAPI.getUsers(page, pageSize).then((data) => {
-            dispath(toggleIsFetching(false));
-            dispath(setUsers(data.items));
-            dispath(setTotalUsersCount(data.totalCount));
-        });
+        const data = await usersAPI.getUsers(page, pageSize);
+        dispath(toggleIsFetching(false));
+        dispath(setUsers(data.items));
+        dispath(setTotalUsersCount(data.totalCount));
     };
 };
+
+const followUnfollowFlow = async (dispath, userId, apiMethod, actionCreator) => {
+    dispath(toggleFollowingProgress(true, userId));
+
+    let response = await apiMethod(userId);
+    if (response.data.resultCode == 0) {
+        dispath(actionCreator(userId));
+    }
+    dispath(toggleFollowingProgress(false, userId));
+};
+
 export const follow = (userId) => {
-    return (dispath) => {
-        dispath(toggleFollowingProgress(true, userId));
-        usersAPI.follow(userId).then((response) => {
-            if (response.data.resultCode == 0) {
-                dispath(followSuccess(userId));
-            }
-            dispath(toggleFollowingProgress(false, userId));
-        });
+    return async (dispath) => {
+        followUnfollowFlow(dispath, userId, usersAPI.follow.bind(usersAPI), followSuccess);
     };
 };
 export const unfollow = (userId) => {
-    return (dispath) => {
-        dispath(toggleFollowingProgress(true, userId));
-        usersAPI.unfollow(userId).then((response) => {
-            if (response.data.resultCode == 0) {
-                dispath(unfollowSuccess(userId));
-            }
-            dispath(toggleFollowingProgress(false, userId));
-        });
+    return async (dispath) => {
+        followUnfollowFlow(dispath, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
     };
 };
 

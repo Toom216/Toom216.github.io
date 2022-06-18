@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
@@ -25,25 +25,23 @@ class App extends Component {
         }
 
         return (
-            <BrowserRouter>
-                <div className="main">
-                    <div className="wrapper">
-                        <HeaderContainer />
-                        <Nav />
-                        <div className="main-content-wrapper">
-                            <Routes>
-                                <Route path="/dialogs/*" element={<DialogsContainer />} />
-                                <Route path="/profile/userId?" element={<ProfileContainer />} />
-                                <Route path="/news" element={<News />} />
-                                <Route path="/music" element={<Music />} />
-                                <Route path="/settings" element={<Settings />} />
-                                <Route path="/users" element={<UsersContainer />} />
-                                <Route path="/login" element={<Login />} />
-                            </Routes>
-                        </div>
+            <div className="main">
+                <div className="wrapper">
+                    <HeaderContainer />
+                    <Nav />
+                    <div className="main-content-wrapper">
+                        <Routes>
+                            <Route path="/dialogs/*" element={<DialogsContainer />} />
+                            <Route path="/profile/userId?" element={<ProfileContainer />} />
+                            <Route path="/news" element={<News />} />
+                            <Route path="/music" element={<Music />} />
+                            <Route path="/settings" element={<Settings />} />
+                            <Route path="/users" element={<UsersContainer />} />
+                            <Route path="/login" element={<Login />} />
+                        </Routes>
                     </div>
                 </div>
-            </BrowserRouter>
+            </div>
         );
     }
 }

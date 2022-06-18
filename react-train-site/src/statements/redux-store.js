@@ -17,7 +17,9 @@ let reducers = combineReducers({
     form: formReducer,
     app: appReducer,
 });
+
 let store = createStore(reducers, applyMiddleware(thunkMiMiddleware));
+
 window.store = store;
 
 export default store;
