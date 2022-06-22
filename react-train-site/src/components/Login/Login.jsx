@@ -4,7 +4,7 @@ import { reqired } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControls/FormsControls";
 import { connect } from "react-redux";
 import { login } from "../../statements/auth-reducer";
-import { Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../common/FormsControls/FormsControls.module.css";
 
 const LoginForm = ({ handleSubmit, error }) => {
@@ -27,7 +27,7 @@ const Login = (props) => {
     };
 
     if (props.isAuth) {
-        return <Navigate to={"/profile"} />;
+        return <NavLink to={"/profile"} />;
     }
     return (
         <div>

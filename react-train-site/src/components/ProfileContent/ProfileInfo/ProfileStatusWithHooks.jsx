@@ -1,5 +1,6 @@
 import styles from "./ProfileInfo.module.css";
 import React, { useState, useEffect } from "react";
+import { render } from "react-dom";
 
 const ProfileStatusWithHooks = (props) => {
     let [editMode, setEditMode] = useState(false);
@@ -29,6 +30,7 @@ const ProfileStatusWithHooks = (props) => {
                 <div>
                     <span
                         onDoubleClick={() => {
+                            // eslint-disable-next-line no-unused-expressions
                             activateMode;
                         }}
                     >
